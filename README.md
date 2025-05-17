@@ -1,4 +1,5 @@
 Stone Paper Scissor Game
+
 This is a simple Stone Paper Scissor game built using HTML, CSS, and JavaScript. It’s my first project after learning the basics of web development.
 
 Features
