@@ -4,9 +4,9 @@ let scores = {};
         let userMove = '';
 
 
-        function startGame(userMove) {
+        function startGame(move) {
 
-            this.userMove = userMove;
+            userMove = move;
             let random = Math.random();
            
             // console.log(userMove);
@@ -16,15 +16,15 @@ let scores = {};
 
                 compMove = 'rock';
 
-                if(userMove === 'rock'){
+                if(move === 'rock'){
                     result = 'Tie!';
-                }else if(userMove === 'paper'){
+                }else if(move === 'paper'){
                     result = 'User Wins!';
                 }else{
                     result = 'Computer Wins!';
                 }
-            
-                UpdateScoreBoard(result);
+
+                UpdateScoreBoard();
                 displayScoreBoard();
 
             }
@@ -33,15 +33,15 @@ let scores = {};
 
                 compMove = 'paper';
 
-                if(userMove === 'rock'){
+                if(move === 'rock'){
                     result = 'Computer Wins!';
-                }else if(userMove === 'paper'){
+                }else if(move === 'paper'){
                     result = 'Tie!';
                 }else{
                     result = 'User Wins!';
                 }
 
-                UpdateScoreBoard(result);
+                UpdateScoreBoard();
                 displayScoreBoard();
             }
             //if computer move is scissor
@@ -49,20 +49,20 @@ let scores = {};
 
                 compMove = 'scissor';
 
-                if(userMove === 'rock'){
+                if(move === 'rock'){
                     result = 'User Wins!';
-                }else if(userMove === 'paper'){
+                }else if(move === 'paper'){
                     result = 'Computer Wins!';
                 }else{
                     result = 'Tie!';
                 }
 
-                UpdateScoreBoard(result);
+                UpdateScoreBoard();
                 displayScoreBoard();
             }
         }
 
-        function UpdateScoreBoard(result){
+        function UpdateScoreBoard(){
 
             //initializing the scores if not in local storage
             if(!localStorage.getItem('scores')){
@@ -92,8 +92,11 @@ let scores = {};
 
         function displayScoreBoard() {
 
+            // if(this.userMove == 'undefined'){
+            //     this.userMove = '__';
+            // }
 
-            document.querySelector('.move1').innerHTML = `${this.userMove}`;
+            document.querySelector('.move1').innerHTML = `${userMove}`;
             document.querySelector('.move2').innerHTML = `${compMove}`;
 
             document.querySelector('.user-score').innerHTML = `${scores.wins}`;
@@ -101,11 +104,11 @@ let scores = {};
 
             // Update user image
             const userImg = document.querySelector('.player1-img');
-            if (this.userMove === 'rock') {
+            if (userMove === 'rock') {
                 userImg.src = 'assets/rock.png';
-            } else if (this.userMove === 'paper') {
+            } else if (userMove === 'paper') {
                 userImg.src = 'assets/paper.png';
-            } else if (this.userMove === 'scissor') {
+            } else if (userMove === 'scissor') {
                 userImg.src = 'assets/scissor.png';
             } else {
                 userImg.src = 'assets/ChatGPT Image May 17, 2025, 07_36_08 PM.png'; // default
@@ -123,10 +126,11 @@ let scores = {};
                 compImg.src = 'assets/ChatGPT Image May 17, 2025, 07_36_15 PM.png'; // default
             }
 
-            this.userMove = '';
+            userMove = '';
             compMove = '';
             result = '';
         }
+        
 
         function resetGame() {
             scores.wins = 0;
@@ -134,8 +138,15 @@ let scores = {};
             scores.ties = 0;
             localStorage.removeItem('scores');
 
-            this.userMove = '__';
+            userMove = '__';
             compMove = '__';
 
             displayScoreBoard();
         }
+
+        UpdateScoreBoard();
+        displayScoreBoard();
+        
+
+        
+
