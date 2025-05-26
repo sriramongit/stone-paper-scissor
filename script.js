@@ -3,6 +3,7 @@ let result = "";
 let compMove = "";
 let userMove = "";
 let auto = false;
+let darkTheme = false;
 let Interval1;
 
 let autoplayBtn = document.querySelector('.btn-autoplay');

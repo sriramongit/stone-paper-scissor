@@ -15,7 +15,32 @@
   <body>
     <header class="header">
       <div class="left-section">
-        <button class="toggle-theme btn">Toggle Theme</button>
+        <button class="toggle-theme btn" onclick="
+
+        if(!darkTheme) { 
+          darkTheme = true;
+          const bodyElement = document.body.style;
+          const headerElement = document.querySelector('header');
+          const midSectionHeading = document.querySelector('.mid-section h2');
+          bodyElement.backgroundColor = 'white';
+          bodyElement.color = 'black';
+          headerElement.style.backgroundColor = 'white';
+          headerElement.style.color = 'black';
+          midSectionHeading.style.color = 'black';
+        }else{
+          darkTheme = false;
+          const bodyElement = document.body.style;
+          const headerElement = document.querySelector('header');
+          const midSectionHeading = document.querySelector('.mid-section h2');
+          bodyElement.backgroundColor = 'black';
+          bodyElement.color = 'white';
+          headerElement.style.backgroundColor = 'black';
+          headerElement.style.color = 'white';
+          midSectionHeading.style.color = 'white';
+        }
+        
+        "
+        >Toggle Theme</button>
       </div>
 
       <div class="mid-section">
@@ -123,7 +148,7 @@
             autoplay();
         }else{
           autoplayBtn.innerHTML = 'AUTOPLAY';
-          auto = true;
+          auto = false;
           alert('Autoplay is off');
           clearInterval(Interval1);
         }
