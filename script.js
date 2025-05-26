@@ -17,9 +17,16 @@ function validatingUsername() {
     const username = prompt(
       "Hey Legend🔥 Before we throw Rocks🪨, Papers📄 and Scissors✂️ around, what's gonna be your EPIC username?"
     );
-    alert(
-      `🔥 Welcome, ${username}! Let the battle of Stone, Paper & Scissors begin! 🪨📄✂️`
-    );
+
+    if (!username) {
+        alert(
+            `🔥 Welcome, User! Let the battle of Stone, Paper & Scissors begin! 🪨📄✂️`
+        );
+    } else {
+        alert(
+            `🔥 Welcome, ${username}! Let the battle of Stone, Paper & Scissors begin! 🪨📄✂️`
+        );
+    }
 
     usernameTemplate.innerHTML = `${username.toUpperCase()}`;
 }
