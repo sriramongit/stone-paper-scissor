@@ -28,7 +28,7 @@ function validatingUsername() {
         );
     }
 
-    usernameTemplate.innerHTML = `${username.toUpperCase()}`;
+    usernameTemplate.innerHTML = `${username.toUpperCase().slice(0, username.indexOf(' '))}`;
 }
 
 
