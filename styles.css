@@ -150,6 +150,13 @@ p{
     border-bottom-right-radius: 20px;
 }
 
+.ground{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 100%;
+}
+
 .player1-img{
     margin-left: 20px;
     padding: 10px;
@@ -244,6 +251,14 @@ p{
     margin-bottom: 30px; 
 }
 
+.btn-autoplay{
+    width: 200px; 
+    margin-bottom: 30px; 
+}
+
 .btn-reset:hover{
+    transform: none;
+}
+.btn-autoplay:hover{
     transform: none;
 }

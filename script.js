@@ -1,152 +1,166 @@
 let scores = {};
-        let result = '';
-        let compMove = '';
-        let userMove = '';
+let result = "";
+let compMove = "";
+let userMove = "";
+let auto = false;
+let Interval1;
 
+let autoplayBtn = document.querySelector('.btn-autoplay');
 
-        function startGame(move) {
+function startGame(move) {
+  userMove = move;
+  let random = Math.random();
 
-            userMove = move;
-            let random = Math.random();
-           
-            // console.log(userMove);
+  // console.log(userMove);
 
-            //if computer move is rock
-            if(random >= 0 && random < 1/3){
+  //if computer move is rock
+  if (random >= 0 && random < 1 / 3) {
+    compMove = "rock";
 
-                compMove = 'rock';
+    if (move === "rock") {
+      result = "Tie!";
+    } else if (move === "paper") {
+      result = "User Wins!";
+    } else {
+      result = "Computer Wins!";
+    }
 
-                if(move === 'rock'){
-                    result = 'Tie!';
-                }else if(move === 'paper'){
-                    result = 'User Wins!';
-                }else{
-                    result = 'Computer Wins!';
-                }
+    UpdateScoreBoard();
+    displayScoreBoard();
+  }
+  //if computer move is paper
+  else if (random >= 1 / 3 && random < 2 / 3) {
+    compMove = "paper";
 
-                UpdateScoreBoard();
-                displayScoreBoard();
+    if (move === "rock") {
+      result = "Computer Wins!";
+    } else if (move === "paper") {
+      result = "Tie!";
+    } else {
+      result = "User Wins!";
+    }
 
-            }
-            //if computer move is paper 
-            else if(random >= 1/3 && random <2/3) {
+    UpdateScoreBoard();
+    displayScoreBoard();
+  }
+  //if computer move is scissor
+  else {
+    compMove = "scissor";
 
-                compMove = 'paper';
+    if (move === "rock") {
+      result = "User Wins!";
+    } else if (move === "paper") {
+      result = "Computer Wins!";
+    } else {
+      result = "Tie!";
+    }
 
-                if(move === 'rock'){
-                    result = 'Computer Wins!';
-                }else if(move === 'paper'){
-                    result = 'Tie!';
-                }else{
-                    result = 'User Wins!';
-                }
+    UpdateScoreBoard();
+    displayScoreBoard();
+  }
+}
 
-                UpdateScoreBoard();
-                displayScoreBoard();
-            }
-            //if computer move is scissor
-            else{
+function UpdateScoreBoard() {
+  //initializing the scores if not in local storage
+  if (!localStorage.getItem("scores")) {
+    scores = {
+      wins: 0,
+      losses: 0,
+      ties: 0,
+    };
+  } else {
+    scores = JSON.parse(localStorage.getItem("scores"));
+  }
 
-                compMove = 'scissor';
+  //updating the scoreboard
+  if (result === "User Wins!") {
+    //if the user wins
+    scores.wins += 1;
+  } else if (result === "Computer Wins!") {
+    //if the computer wins
+    scores.losses += 1;
+  } else {
+    //if result is a tie
+    scores.ties += 1;
+  }
 
-                if(move === 'rock'){
-                    result = 'User Wins!';
-                }else if(move === 'paper'){
-                    result = 'Computer Wins!';
-                }else{
-                    result = 'Tie!';
-                }
+  localStorage.setItem("scores", JSON.stringify(scores));
+}
 
-                UpdateScoreBoard();
-                displayScoreBoard();
-            }
-        }
+function displayScoreBoard() {
+  // if(this.userMove == 'undefined'){
+  //     this.userMove = '__';
+  // }
 
-        function UpdateScoreBoard(){
+  document.querySelector(".move1").innerHTML = `${userMove}`;
+  document.querySelector(".move2").innerHTML = `${compMove}`;
 
-            //initializing the scores if not in local storage
-            if(!localStorage.getItem('scores')){
-                scores = {
-                    wins: 0, 
-                    losses: 0, 
-                    ties: 0 
-                }
-            }else{
-                scores = JSON.parse(localStorage.getItem('scores'));
-            }
+  document.querySelector(".user-score").innerHTML = `${scores.wins}`;
+  document.querySelector(".comp-score").innerHTML = `${scores.losses}`;
 
-            //updating the scoreboard
-            if(result === 'User Wins!') {
-                //if the user wins
-                scores.wins += 1;
-            }else if(result === 'Computer Wins!'){
-                //if the computer wins
-                scores.losses += 1;
-            }else{
-                //if result is a tie
-                scores.ties += 1;
-            }
+  // Update user image
+  const userImg = document.querySelector(".player1-img");
+  if (userMove === "rock") {
+    userImg.src = "assets/rock.png";
+  } else if (userMove === "paper") {
+    userImg.src = "assets/paper.png";
+  } else if (userMove === "scissor") {
+    userImg.src = "assets/scissor.png";
+  } else {
+    userImg.src = "assets/ChatGPT Image May 17, 2025, 07_36_08 PM.png"; // default
+  }
 
-            localStorage.setItem('scores', JSON.stringify(scores));
-        }
+  // Update computer image
+  const compImg = document.querySelector(".player2-img");
+  if (compMove === "rock") {
+    compImg.src = "assets/rock.png";
+  } else if (compMove === "paper") {
+    compImg.src = "assets/paper.png";
+  } else if (compMove === "scissor") {
+    compImg.src = "assets/scissor.png";
+  } else {
+    compImg.src = "assets/ChatGPT Image May 17, 2025, 07_36_15 PM.png"; // default
+  }
 
-        function displayScoreBoard() {
+  userMove = "";
+  compMove = "";
+  result = "";
+}
 
-            // if(this.userMove == 'undefined'){
-            //     this.userMove = '__';
-            // }
+function resetGame() {
+  scores.wins = 0;
+  scores.losses = 0;
+  scores.ties = 0;
+  localStorage.removeItem("scores");
 
-            document.querySelector('.move1').innerHTML = `${userMove}`;
-            document.querySelector('.move2').innerHTML = `${compMove}`;
+  userMove = "__";
+  compMove = "__";
 
-            document.querySelector('.user-score').innerHTML = `${scores.wins}`;
-            document.querySelector('.comp-score').innerHTML = `${scores.losses}`;
+  displayScoreBoard();
+}
 
-            // Update user image
-            const userImg = document.querySelector('.player1-img');
-            if (userMove === 'rock') {
-                userImg.src = 'assets/rock.png';
-            } else if (userMove === 'paper') {
-                userImg.src = 'assets/paper.png';
-            } else if (userMove === 'scissor') {
-                userImg.src = 'assets/scissor.png';
-            } else {
-                userImg.src = 'assets/ChatGPT Image May 17, 2025, 07_36_08 PM.png'; // default
-            }
+//to autogenerate userMove
+function autoplay() { 
 
-            // Update computer image
-            const compImg = document.querySelector('.player2-img');
-            if (compMove === 'rock') {
-                compImg.src = 'assets/rock.png';
-            } else if (compMove === 'paper') {
-                compImg.src = 'assets/paper.png';
-            } else if (compMove === 'scissor') {
-                compImg.src = 'assets/scissor.png';
-            } else {
-                compImg.src = 'assets/ChatGPT Image May 17, 2025, 07_36_15 PM.png'; // default
-            }
+  alert("Autoplay is on");
+  Interval1 = setInterval(function () {
+    let random = Math.random();
 
-            userMove = '';
-            compMove = '';
-            result = '';
-        }
-        
+    if (random >= 0 && random < 1 / 3) {
+      userMove = "rock";
+    }
+    //if computer move is paper
+    else if (random >= 1 / 3 && random < 2 / 3) {
+      userMove = "paper";
+    }
+    //if computer move is scissor
+    else {
+      userMove = "scissor";
+    }
 
-        function resetGame() {
-            scores.wins = 0;
-            scores.losses = 0;
-            scores.ties = 0;
-            localStorage.removeItem('scores');
+    startGame(userMove);
+  }, 1500);
+}
 
-            userMove = '__';
-            compMove = '__';
-
-            displayScoreBoard();
-        }
-
-        UpdateScoreBoard();
-        displayScoreBoard();
-        
-
-        
-
+UpdateScoreBoard();
+displayScoreBoard();

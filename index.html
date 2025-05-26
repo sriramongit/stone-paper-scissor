@@ -1,95 +1,136 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Rock Paper Scissor</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
-</head>
-<body>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
     <header class="header">
-        <div class="left-section">
-            <button class="toggle-theme btn">Toggle Theme</button>
-        </div>
+      <div class="left-section">
+        <button class="toggle-theme btn">Toggle Theme</button>
+      </div>
 
-        <div class="mid-section">
-            <h2>ROCK PAPER SCISSOR V1</h2>
-        </div>
+      <div class="mid-section">
+        <h2>ROCK PAPER SCISSOR V1</h2>
+      </div>
 
-        <div class="right-section">
-            <button class="about btn">About</button>
-        </div>
+      <div class="right-section">
+        <button class="about btn">About</button>
+      </div>
     </header>
 
     <!-- main content -->
     <div class="main-container">
-        <div class="scoreboard-user">
-            <div class="player">
-                <p>USER</p>
-            </div>
-            <div class="score">
-                <!-- user score -->
-                <p class="user-score">0</p>
-            </div>
+      <div class="scoreboard-user">
+        <div class="player">
+          <p>USER</p>
         </div>
-        <div class="scoreboard-computer">
-            <div class="player">
-                <p>COMPUTER</p>
-            </div>
-            <div class="score">
-                <!-- computer score -->
-                <p class="comp-score">0</p>
-            </div>
+        <div class="score">
+          <!-- user score -->
+          <p class="user-score">0</p>
         </div>
+      </div>
+      <div class="scoreboard-computer">
+        <div class="player">
+          <p>COMPUTER</p>
+        </div>
+        <div class="score">
+          <!-- computer score -->
+          <p class="comp-score">0</p>
+        </div>
+      </div>
 
-        <!-- topboard -->
-        <div class="top-board">
-            <p class="versus">VS</p>
-        </div>
+      <!-- topboard -->
+      <div class="top-board">
+        <p class="versus">VS</p>
+      </div>
 
-        <!-- midboard -->
-        <div class="mid-board">
-            <div class="user-move">
-                <!-- user move image -->
-                <img class="player1-img" src="assets/ChatGPT Image May 17, 2025, 07_36_08 PM.png" alt="">
-                <!-- user move -->
-                <p class="move1">__</p>
-            </div>
-            <div class="comp-move">
-                <!-- computer move image -->
-                <img class="player2-img" src="assets/ChatGPT Image May 17, 2025, 07_36_15 PM.png" alt="">
-                <!-- comp move -->
-                <p class="move2">__</p>
-            </div>
+      <!-- midboard -->
+      <div class="mid-board">
+        <div class="user-move">
+          <!-- user move image -->
+          <img
+            class="player1-img"
+            src="assets/ChatGPT Image May 17, 2025, 07_36_08 PM.png"
+            alt=""
+          />
+          <!-- user move -->
+          <p class="move1">__</p>
         </div>
+        <div class="comp-move">
+          <!-- computer move image -->
+          <img
+            class="player2-img"
+            src="assets/ChatGPT Image May 17, 2025, 07_36_15 PM.png"
+            alt=""
+          />
+          <!-- comp move -->
+          <p class="move2">__</p>
+        </div>
+      </div>
 
-        <!-- bottom board (buttons)-->
-        <div class="bottom-board">
-            <button class="btn-rock btn" onclick="
+      <!-- bottom board (buttons)-->
+      <div class="bottom-board">
+        <button
+          class="btn-rock btn"
+          onclick="
             startGame('rock');
                 "
-            >ROCK</button>
+        >
+          ROCK
+        </button>
 
-            <button class="btn-paper btn" onclick="
+        <button
+          class="btn-paper btn"
+          onclick="
             startGame('paper');
             "
-            >PAPER</button>
+        >
+          PAPER
+        </button>
 
-            <button class="btn-scissor btn" onclick="
+        <button
+          class="btn-scissor btn"
+          onclick="
             startGame('scissor');
             "
-            >SCISSOR</button>
-        </div>
+        >
+          SCISSOR
+        </button>
+      </div>
 
-        <button class="btn-reset btn" onclick="
+      <div class="ground">
+        <button
+          class="btn-reset btn"
+          onclick="
         resetGame();
         "
-        >RESET SCORE</button>
+        >
+          RESET SCORE
+        </button>
+        <button class="btn-autoplay btn" onclick="
+        if(!auto) {
+            auto = true;
+            autoplayBtn.innerHTML = 'STOP AUTOPLAY';
+            autoplay();
+        }else{
+          autoplayBtn.innerHTML = 'AUTOPLAY';
+          auto = true;
+          clearInterval(Interval1);
+        }
+        "
+        >AUTOPLAY</button>
+      </div>
     </div>
 
     <script src="script.js"></script>
-</body>
+  </body>
 </html>
