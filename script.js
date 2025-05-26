@@ -5,34 +5,38 @@ let userMove = "";
 let auto = false;
 let darkTheme = false;
 let Interval1;
+let username;
 
-
-let autoplayBtn = document.querySelector('.btn-autoplay');
+let autoplayBtn = document.querySelector(".btn-autoplay");
 validatingUsername();
 
 
+function validatingUsername() {
+  let usernameTemplate = document.querySelector(".username");
 
-function validatingUsername() { 
-    let usernameTemplate = document.querySelector(".username");
-    let username = prompt(
-      "Hey Legend🔥 Before we throw Rocks🪨, Papers📄 and Scissors✂️ around, what's gonna be your EPIC username?"
-    ).toUpperCase()+" ";
+  if (!localStorage.getItem('username')) {
+    username =
+      prompt(
+        "Hey Legend🔥 Before we throw Rocks🪨, Papers📄 and Scissors✂️ around, what's gonna be your EPIC username?"
+      ).toUpperCase() + " ";
+    localStorage.setItem("username", username);
+  } else { 
+    username = localStorage.getItem('username');
+  }
+  
+  if (!username) {
+    alert(
+      `🔥 Welcome, User! Let the battle of Stone, Paper & Scissors begin! 🪨📄✂️`
+    );
+  } else {
+    alert(
+      `🔥 Welcome, ${username}! Let the battle of Stone, Paper & Scissors begin! 🪨📄✂️`
+    );
+  }
 
-    if (!username) {
-        alert(
-            `🔥 Welcome, User! Let the battle of Stone, Paper & Scissors begin! 🪨📄✂️`
-        );
-    } else {
-        alert(
-            `🔥 Welcome, ${username}! Let the battle of Stone, Paper & Scissors begin! 🪨📄✂️`
-        );
-    }
-
-    username = username.substring(0, username.indexOf(' '));
-    usernameTemplate.innerHTML = `${username}`
+  username = username.substring(0, username.indexOf(" "));
+  usernameTemplate.innerHTML = `${username}`;
 }
-
-
 
 function startGame(move) {
   userMove = move;
@@ -164,12 +168,14 @@ function resetGame() {
   compMove = "__";
 
   displayScoreBoard();
+
+  localStorage.removeItem("username");
+  validatingUsername();
+
 }
 
 //to autogenerate userMove
-function autoplay() { 
-
-  alert("Autoplay is on");
+function autoplay() {
   Interval1 = setInterval(function () {
     let random = Math.random();
 

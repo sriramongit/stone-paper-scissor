@@ -263,3 +263,7 @@ p{
 .btn-autoplay:hover{
     transform: none;
 }
+
+.username{
+    cursor: pointer;
+}
