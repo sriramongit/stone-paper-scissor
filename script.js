@@ -15,7 +15,7 @@ validatingUsername();
 function validatingUsername() { 
     let usernameTemplate = document.querySelector(".username");
     const username = prompt(
-      "Hey Legend🔥 Before we through Rocks🪨, Papers📄 and Scissors✂️ around, what's gonna be your EPIC username?"
+      "Hey Legend🔥 Before we throw Rocks🪨, Papers📄 and Scissors✂️ around, what's gonna be your EPIC username?"
     );
     alert(
       `🔥 Welcome, ${username}! Let the battle of Stone, Paper & Scissors begin! 🪨📄✂️`
