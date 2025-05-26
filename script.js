@@ -14,9 +14,9 @@ validatingUsername();
 
 function validatingUsername() { 
     let usernameTemplate = document.querySelector(".username");
-    const username = prompt(
+    let username = prompt(
       "Hey Legend🔥 Before we throw Rocks🪨, Papers📄 and Scissors✂️ around, what's gonna be your EPIC username?"
-    );
+    ).toUpperCase()+" ";
 
     if (!username) {
         alert(
@@ -28,7 +28,8 @@ function validatingUsername() {
         );
     }
 
-    usernameTemplate.innerHTML = `${username.toUpperCase().slice(0, username.indexOf(' '))}`;
+    username = username.substring(0, username.indexOf(' '));
+    usernameTemplate.innerHTML = `${username}`
 }
 
 
