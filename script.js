@@ -6,7 +6,25 @@ let auto = false;
 let darkTheme = false;
 let Interval1;
 
+
 let autoplayBtn = document.querySelector('.btn-autoplay');
+validatingUsername();
+
+
+
+function validatingUsername() { 
+    let usernameTemplate = document.querySelector(".username");
+    const username = prompt(
+      "Hey Legend🔥 Before we through Rocks🪨, Papers📄 and Scissors✂️ around, what's gonna be your EPIC username?"
+    );
+    alert(
+      `🔥 Welcome, ${username}! Let the battle of Stone, Paper & Scissors begin! 🪨📄✂️`
+    );
+
+    usernameTemplate.innerHTML = `${username.toUpperCase()}`;
+}
+
+
 
 function startGame(move) {
   userMove = move;
