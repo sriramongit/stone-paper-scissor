@@ -5,6 +5,7 @@
 body{
     display: flex;
     flex-direction: column;
+    align-items: center;
     color: white;
     font-family: "Source Sans 3", sans-serif;
     align-items: center;
