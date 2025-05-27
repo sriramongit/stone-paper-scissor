@@ -12,13 +12,11 @@ validatingUsername();
 
 document.body.addEventListener('keydown', (event) => {
   if (event.key === 'r')
-    userMove = 'rock';
+    startGame('rock');
   if (event.key === 'p')
-    userMove = 'paper';
+    startGame('paper');
   if (event.key === 's')
-    userMove = 'scissor';
-
-  startGame(userMove);
+    startGame('scissor');
 });
 
 function validatingUsername() {
