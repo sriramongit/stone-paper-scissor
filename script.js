@@ -10,6 +10,16 @@ let username;
 let autoplayBtn = document.querySelector(".btn-autoplay");
 validatingUsername();
 
+document.body.addEventListener('keydown', (event) => {
+  if (event.key === 'r')
+    userMove = 'rock';
+  if (event.key === 'p')
+    userMove = 'paper';
+  if (event.key === 's')
+    userMove = 'scissor';
+
+  startGame(userMove);
+});
 
 function validatingUsername() {
   let usernameTemplate = document.querySelector(".username");
