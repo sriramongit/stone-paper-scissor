@@ -176,7 +176,7 @@ function resetGame() {
 
 //to autogenerate userMove
 function autoplay() {
-  Interval1 = setInterval(function () {
+  Interval1 = setInterval( () => {
     let random = Math.random();
 
     if (random >= 0 && random < 1 / 3) {
