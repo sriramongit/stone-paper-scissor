@@ -17,6 +17,18 @@ document.body.addEventListener('keydown', (event) => {
     startGame('paper');
   if (event.key === 's')
     startGame('scissor');
+  if (event.key === 'a') { 
+    if (auto === false) {
+      auto = true;
+      clearInterval(Interval1);
+      renderAutoplayButton();
+      autoplay();
+    } else {
+      auto = false;
+      renderAutoplayButton();
+      clearInterval(Interval1);
+    }
+  }
 });
 
 function validatingUsername() {
@@ -44,6 +56,18 @@ function validatingUsername() {
 
   username = username.substring(0, username.indexOf(" "));
   usernameTemplate.innerHTML = `${username}`;
+}
+
+function renderAutoplayButton() { 
+  if (!auto) {
+    auto = true;
+    autoplayBtn.innerHTML = "STOP AUTOPLAY";
+    autoplay();
+  } else {
+    autoplayBtn.innerHTML = "AUTOPLAY";
+    auto = false;
+    clearInterval(Interval1);
+  }
 }
 
 function startGame(move) {

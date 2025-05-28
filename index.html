@@ -142,15 +142,7 @@
           RESET GAME
         </button>
         <button class="btn-autoplay btn" onclick="
-        if(!auto) {
-            auto = true;
-            autoplayBtn.innerHTML = 'STOP AUTOPLAY';
-            autoplay();
-        }else{
-          autoplayBtn.innerHTML = 'AUTOPLAY';
-          auto = false;
-          clearInterval(Interval1);
-        }
+        renderAutoplayButton();
         "
         >AUTOPLAY</button>
       </div>
